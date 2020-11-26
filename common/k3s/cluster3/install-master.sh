@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 K3S_VERSION=v1.18.12+k3s1
-MASTER_DNS=master3
-CLUSTER_CIDR=192.168.3.0/24
+MASTER_IP=10.1.40.9
 INSTALL_K3S_EXEC="--flannel-backend=none \
-                  --advertise-address=10.1.40.9 \
-                  --cluster-cidr=${CLUSTER_CIDR} \
+                  --flannel-iface=ens6 \
+                  --advertise-address=${MASTER_IP} \
+                  --cluster-cidr=192.168.1.0/24 \
                   --cluster-domain=cluster3.local \
                   --disable-network-policy \
                   --disable=traefik"
@@ -13,7 +13,7 @@ INSTALL_K3S_EXEC="--flannel-backend=none \
 echo "Install k3s master"
 curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=${K3S_VERSION} K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC=${INSTALL_K3S_EXEC} sh -
 K3S_TOKEN=$(sudo cat /var/lib/rancher/k3s/server/node-token)
-K3S_URL="https://${MASTER_DNS}:6443"
+K3S_URL="https://${MASTER_IP}:6443"
 
 echo "Install kubelet and join master node"
 curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=${K3S_VERSION} K3S_URL=${K3S_URL} K3S_TOKEN=${K3S_TOKEN} K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC=${INSTALL_K3S_EXEC} sh -
@@ -22,7 +22,7 @@ echo "Make kubectl config available for user and enable auto-complete"
 sudo mkdir -p ~/.kube
 sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 sudo chown ubuntu:ubuntu -R ~/.kube
-sudo sed -i "s/127.0.0.1/${MASTER_DNS}/" ~/.kube/config
+sudo sed -i "s/127.0.0.1/${MASTER_IP}/" ~/.kube/config
 
 echo '' >>~/.bashrc
 echo '# Kubernetes' >>~/.bashrc
