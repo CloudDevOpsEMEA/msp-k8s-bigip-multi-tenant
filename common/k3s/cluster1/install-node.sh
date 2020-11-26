@@ -2,8 +2,9 @@
 
 K3S_VERSION=v1.18.12+k3s1
 MASTER_IP=10.1.20.5
+NODE_IP=10.1.20.6
 INSTALL_K3S_EXEC="--flannel-iface=ens6 \
-                  --node-ip=10.1.20.6"
+                  --node-ip=${NODE_IP}"
 
 function printhelp {
   echo "Usage: install-k3s-slave.sh <master_token>"
