@@ -21,7 +21,7 @@ fi
 K3S_URL="https://${MASTER_DNS}:6443"
 
 echo "Install kubelet and join master node"
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=${K3S_VERSION} K3S_URL=${K3S_URL} K3S_TOKEN=${K3S_TOKEN}  K3S_KUBECONFIG_MODE="644" INSTALL_K3S_EXEC="--flannel-backend=none --cluster-cidr=${CLUSTER_CIDR} --disable-network-policy --disable=traefik" sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=${K3S_VERSION} K3S_URL=${K3S_URL} K3S_TOKEN=${K3S_TOKEN} sh -
 
 echo "Make kubectl config available for user and enable auto-complete"
 sudo mkdir -p ~/.kube
