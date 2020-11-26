@@ -2,13 +2,8 @@
 
 K3S_VERSION=v1.18.12+k3s1
 MASTER_IP=10.1.20.5
-INSTALL_K3S_EXEC="--flannel-backend=none \
-                  --flannel-iface=ens6 \
-                  --node-ip=10.1.20.6 \
-                  --cluster-cidr=192.168.1.0/24 \
-                  --cluster-domain=cluster1.local \
-                  --disable-network-policy \
-                  --disable=traefik"
+INSTALL_K3S_EXEC="--flannel-iface=ens6 \
+                  --node-ip=10.1.20.6"
 
 function printhelp {
   echo "Usage: install-k3s-slave.sh <master_token>"
