@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-kubectl create -f tigera-operator.yml
-kubectl create -f custom-resources.yml
+kubectl apply -f tigera-operator.yml
+kubectl apply -f custom-resources.yml
