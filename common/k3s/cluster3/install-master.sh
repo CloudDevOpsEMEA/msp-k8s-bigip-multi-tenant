@@ -31,5 +31,9 @@ echo 'source <(kubectl completion bash)' >>~/.bashrc
 echo 'alias k=kubectl' >>~/.bashrc
 echo 'complete -F __start_kubectl k' >>~/.bashrc
 
+echo "Send kubeconfig to node"
+scp /home/ubuntu/.kube/config node3:/home/ubuntu/.kube/config || true
+
 echo "Use this token for node installation"
 sudo cat /var/lib/rancher/k3s/server/node-token
+
