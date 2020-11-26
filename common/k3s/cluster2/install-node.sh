@@ -36,5 +36,3 @@ echo 'export KUBECONFIG=/home/ubuntu/.kube/config' >>~/.bashrc
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 echo 'alias k=kubectl' >>~/.bashrc
 echo 'complete -F __start_kubectl k' >>~/.bashrc
-
-echo "copy the content of /etc/rancher/k3s/k3s.yaml on the master node into ~/.kube/config to enable kubectl access"
