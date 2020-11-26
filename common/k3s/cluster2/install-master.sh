@@ -16,7 +16,7 @@ echo "Make kubectl config available for user and enable auto-complete"
 sudo mkdir -p ~/.kube
 sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 sudo chown ubuntu:ubuntu -R ~/.kube
-sudo sed -i 's/127.0.0.1/master2/' ~/.kube
+sudo sed -i 's/127.0.0.1/master2/' ~/.kube/config
 
 echo '' >>~/.bashrc
 echo '# Kubernetes' >>~/.bashrc
