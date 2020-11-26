@@ -26,7 +26,7 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=${K3S_VERSION} K3S_URL=${K3S_
 
 echo "Make kubectl config available for user and enable auto-complete"
 sudo mkdir -p ~/.kube
-sudo cp /etc/rancher/k3s/k3s.yaml .kube/config
+sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 sudo chown ubuntu:ubuntu -R ~/.kube
 echo '' >>~/.bashrc
 echo '# Kubernetes' >>~/.bashrc
