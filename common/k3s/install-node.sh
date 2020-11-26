@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-K3S_VERSION=v1.18.10+k3s2
+K3S_VERSION=v1.18.12+k3s1
 
 function printhelp {
   echo "Usage: install-k3s-slave.sh <master_dns> <master_token>"
