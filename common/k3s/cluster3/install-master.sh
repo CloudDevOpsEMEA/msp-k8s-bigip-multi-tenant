@@ -25,5 +25,5 @@ echo 'source <(kubectl completion bash)' >>~/.bashrc
 echo 'alias k=kubectl' >>~/.bashrc
 echo 'complete -F __start_kubectl k' >>~/.bashrc
 
-kubectl create -f tigera-operator.yaml
-kubectl create -f custom-resources.yaml
+kubectl create -f tigera-operator.yml
+kubectl create -f custom-resources.yml
