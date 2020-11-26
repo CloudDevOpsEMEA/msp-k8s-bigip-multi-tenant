@@ -24,3 +24,6 @@ echo 'export KUBECONFIG=/home/ubuntu/.kube/config' >>~/.bashrc
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 echo 'alias k=kubectl' >>~/.bashrc
 echo 'complete -F __start_kubectl k' >>~/.bashrc
+
+echo "Use this token for node installation"
+sudo cat /var/lib/rancher/k3s/server/node-token
