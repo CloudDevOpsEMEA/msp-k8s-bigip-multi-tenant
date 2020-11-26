@@ -2,7 +2,12 @@
 
 K3S_VERSION=v1.18.12+k3s1
 MASTER_DNS=master1
-CLUSTER_CIDR=192.168.1.0/24
+INSTALL_K3S_EXEC="--flannel-backend=none \
+                  --node-ip=10.1.20.6 \
+                  --cluster-cidr=192.168.1.0/24 \
+                  --cluster-domain=cluster1.local \
+                  --disable-network-policy \
+                  --disable=traefik"
 
 function printhelp {
   echo "Usage: install-k3s-slave.sh <master_token>"
@@ -21,7 +26,7 @@ fi
 K3S_URL="https://${MASTER_DNS}:6443"
 
 echo "Install kubelet and join master node"
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=${K3S_VERSION} K3S_URL=${K3S_URL} K3S_TOKEN=${K3S_TOKEN} sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=${K3S_VERSION} K3S_URL=${K3S_URL} K3S_TOKEN=${K3S_TOKEN} INSTALL_K3S_EXEC=${INSTALL_K3S_EXEC} sh -
 
 echo "Make kubectl config available for user and enable auto-complete"
 sudo mkdir -p ~/.kube

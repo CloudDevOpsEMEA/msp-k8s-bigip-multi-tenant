@@ -2,10 +2,9 @@
 
 K3S_VERSION=v1.18.12+k3s1
 MASTER_DNS=master1
-CLUSTER_CIDR=192.168.1.0/24
 INSTALL_K3S_EXEC="--flannel-backend=none \
                   --advertise-address=10.1.20.5 \
-                  --cluster-cidr=${CLUSTER_CIDR} \
+                  --cluster-cidr=192.168.1.0/24 \
                   --cluster-domain=cluster1.local \
                   --disable-network-policy \
                   --disable=traefik"
