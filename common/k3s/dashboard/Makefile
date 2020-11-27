@@ -1,5 +1,6 @@
 .PHONY: help
-.PHONE: install remove
+.PHONE: install-k8s remove-k8s
+.PHONE: install-rancher remove-rancher
 
 help: ## This help
 	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z0-9_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
