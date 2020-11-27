@@ -129,3 +129,4 @@ function check_dockercompose {
 		error "Failed to parse docker-compose version."
 		exit 1
 	fi
+  
