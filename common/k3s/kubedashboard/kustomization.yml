@@ -1,0 +1,5 @@
+resources:
+  - dashboard.yml
+  - user.yml
+
+namespace: kubernetes-dashboard
