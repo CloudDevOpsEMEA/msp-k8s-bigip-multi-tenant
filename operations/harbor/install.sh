@@ -1,51 +1,91 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-HARBOR_VERSION=v1.10.6
+set -e
 
-echo "Download harbor docker registry tarball"
-cd /tmp
-wget https://github.com/goharbor/harbor/releases/download/${HARBOR_VERSION}/harbor-offline-installer-${HARBOR_VERSION}.tgz
-tar xvf harbor-offline-installer-${HARBOR_VERSION}.tgz
+DIR="$(cd "$(dirname "$0")" && pwd)"
+source $DIR/common.sh
 
-echo "Generate a Certificate Authority Certificate"
-openssl genrsa -out ca.key 4096
-openssl req -x509 -new -nodes -sha512 -days 3650 \
- -subj "/C=BE/ST=Mechelen/L=Mechelen/O=registry/OU=Personal/CN=registry" \
- -key ca.key \
- -out ca.crt
+set +o noglob
 
-echo "Generate a Server Certificate"
-openssl genrsa -out registry.key 4096
-openssl req -sha512 -new \
-    -subj "/C=CN/ST=Beijing/L=Beijing/O=example/OU=Personal/CN=yourdomain.com" \
-    -key registry.key \
-    -out registry.csr
-cat > v3.ext <<-EOF
-authorityKeyIdentifier=keyid,issuer
-basicConstraints=CA:FALSE
-keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
-extendedKeyUsage = serverAuth
-subjectAltName = @alt_names
+usage=$'Please set hostname and other necessary attributes in harbor.yml first. DO NOT use localhost or 127.0.0.1 for hostname, because Harbor needs to be accessed by external clients.
+Please set --with-notary if needs enable Notary in Harbor, and set ui_url_protocol/ssl_cert/ssl_cert_key in harbor.yml bacause notary must run under https.
+Please set --with-clair if needs enable Clair in Harbor
+Please set --with-chartmuseum if needs enable Chartmuseum in Harbor'
+item=0
 
-[alt_names]
-DNS.1=registry
-EOF
-openssl x509 -req -sha512 -days 3650 \
-    -extfile v3.ext \
-    -CA ca.crt -CAkey ca.key -CAcreateserial \
-    -in registry.csr \
-    -out registry.crt
+# notary is not enabled by default
+with_notary=$false
+# clair is not enabled by default
+with_clair=$false
+# chartmuseum is not enabled by default
+with_chartmuseum=$false
 
+while [ $# -gt 0 ]; do
+        case $1 in
+            --help)
+            note "$usage"
+            exit 0;;
+            --with-notary)
+            with_notary=true;;
+            --with-clair)
+            with_clair=true;;
+            --with-chartmuseum)
+            with_chartmuseum=true;;
+            *)
+            note "$usage"
+            exit 1;;
+        esac
+        shift || true
+done
 
-echo "Provide the Certificates to Harbor and Docker"
-sudo cp registry.crt /etc/ssl/certs
-sudo cp registry.key /etc/ssl/certs
+workdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $workdir
 
-openssl x509 -inform PEM -in registry.crt -out registry.cert
-sudo mkdir -p /var/snap/docker/certs.d/registry:8443/
-sudo cp registry.cert /var/snap/docker/certs.d/registry:8443/
-sudo cp registry.key /var/snap/docker/certs.d/registry:8443/
-sudo cp ca.crt /var/snap/docker/certs.d/registry:8443/
-sudo snap restart docker
+h2 "[Step $item]: checking if docker is installed ..."; let item+=1
+check_docker
 
+h2 "[Step $item]: checking docker-compose is installed ..."; let item+=1
+check_dockercompose
 
+if [ -f harbor*.tar.gz ]
+then
+    h2 "[Step $item]: loading Harbor images ..."; let item+=1
+    docker load -i ./harbor*.tar.gz
+fi
+echo ""
+
+h2 "[Step $item]: preparing environment ...";  let item+=1
+if [ -n "$host" ]
+then
+    sed "s/^hostname: .*/hostname: $host/g" -i ./harbor.yml
+fi
+
+h2 "[Step $item]: preparing harbor configs ...";  let item+=1
+prepare_para=
+if [ $with_notary ]
+then
+    prepare_para="${prepare_para} --with-notary"
+fi
+if [ $with_clair ]
+then
+    prepare_para="${prepare_para} --with-clair"
+fi
+if [ $with_chartmuseum ]
+then
+    prepare_para="${prepare_para} --with-chartmuseum"
+fi
+
+./prepare $prepare_para
+echo ""
+
+if [ -n "$(docker-compose ps -q)"  ]
+then
+    note "stopping existing Harbor instance ..."
+    docker-compose down -v
+fi
+echo ""
+
+h2 "[Step $item]: starting Harbor ..."
+docker-compose up -d
+
+success $"----Harbor has been installed and started successfully.----"
