@@ -75,7 +75,7 @@ then
     prepare_para="${prepare_para} --with-chartmuseum"
 fi
 
-./prepare $prepare_para
+./prepare.sh $prepare_para
 echo ""
 
 if [ -n "$(docker-compose ps -q)"  ]
