@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-HARBOR_VERSION=v1.10.6
-
-echo "Download harbor docker registry tarball"
-cd /tmp
-wget https://github.com/goharbor/harbor/releases/download/${HARBOR_VERSION}/harbor-offline-installer-${HARBOR_VERSION}.tgz
-tar xvf harbor-offline-installer-${HARBOR_VERSION}.tgz
-
 echo "Generate a Certificate Authority Certificate"
 openssl genrsa -out ca.key 4096
 openssl req -x509 -new -nodes -sha512 -days 3650 \
