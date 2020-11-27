@@ -7,9 +7,9 @@ help: ## This help
 .DEFAULT_GOAL := help
 
 git-pull-all: ## Pull all git repos
-	ssh master1 'cd /home/ubuntu/msp-k8s-bigip-multi-tenant ; git pull'
-	ssh master2 'cd /home/ubuntu/msp-k8s-bigip-multi-tenant ; git pull'
-	ssh master3 'cd /home/ubuntu/msp-k8s-bigip-multi-tenant ; git pull'
-	ssh node1 'cd /home/ubuntu/msp-k8s-bigip-multi-tenant ; git pull'
-	ssh node2 'cd /home/ubuntu/msp-k8s-bigip-multi-tenant ; git pull'
-	ssh node3 'cd /home/ubuntu/msp-k8s-bigip-multi-tenant ; git pull'
+	ssh master1 'cd /home/ubuntu/msp-k8s-bigip-multi-tenant ; git pull ; sudo updatedb'
+	ssh master2 'cd /home/ubuntu/msp-k8s-bigip-multi-tenant ; git pull ; sudo updatedb'
+	ssh master3 'cd /home/ubuntu/msp-k8s-bigip-multi-tenant ; git pull ; sudo updatedb'
+	ssh node1 'cd /home/ubuntu/msp-k8s-bigip-multi-tenant ; git pull ; sudo updatedb'
+	ssh node2 'cd /home/ubuntu/msp-k8s-bigip-multi-tenant ; git pull ; sudo updatedb'
+	ssh node3 'cd /home/ubuntu/msp-k8s-bigip-multi-tenant ; git pull ; sudo updatedb'

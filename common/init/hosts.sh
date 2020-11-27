@@ -11,4 +11,5 @@ sudo tee -a /etc/hosts << END
 10.1.1.9    master3
 10.1.1.10   node3
 10.1.1.11   jumphost
+10.1.1.12   registry
 END
