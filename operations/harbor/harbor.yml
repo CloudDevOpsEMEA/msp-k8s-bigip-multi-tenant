@@ -14,8 +14,8 @@ https:
   # https port for harbor, default is 443
   port: 8443
   # The path of cert and key files for nginx
-  certificate: /etc/ssl/certs/registry.crt
-  private_key: /etc/ssl/certs/registry.key
+  certificate: /home/ubuntu/harbor/certs/registry.crt
+  private_key: /home/ubuntu/harbor/certs/registry.key
 
 # # Uncomment following will enable tls communication between all harbor components
 # internal_tls:
@@ -44,7 +44,7 @@ database:
   max_open_conns: 1000
 
 # The default data volume
-data_volume: /opt/harbor/data
+data_volume: /home/ubuntu/harbor/data
 
 # Harbor Storage settings by default is using /data dir on local filesystem
 # Uncomment storage_service setting If you want to using external storage
