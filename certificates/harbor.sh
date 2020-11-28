@@ -22,11 +22,11 @@ DNS.1=harbor.udfdemo.org
 DNS.2=udfdemo.org
 DNS.3=udfdemo
 DNS.4=harbor
-DNS.5=10.1.1.12
-DNS.6=10.1.10.12
-DNS.7=10.1.20.12
-DNS.9=10.1.30.12
-DNS.9=10.1.40.12
+IP.1=10.1.1.12
+IP.2=10.1.10.12
+IP.3=10.1.20.12
+IP.4=10.1.30.12
+IP.5=10.1.40.12
 EOF
 openssl x509 -req -sha512 -days 3650 \
     -extfile ${HARBOR_CERT_DIR}/harbor-v3.ext \
