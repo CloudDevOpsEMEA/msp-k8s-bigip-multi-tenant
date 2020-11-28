@@ -14,18 +14,12 @@ SNAP_DOCKER_CERT_SUB_DIRS=(
   localhost:8443
 )
 
-echo "Provide the Certificates to Harbor and Docker"
+echo "Provide the Certificates to Harbor"
 mkdir -p /home/ubuntu/harbor/certs
 cp ${HARBOR_CERT_DIR}/harbor.crt /home/ubuntu/harbor/certs
 cp ${HARBOR_CERT_DIR}/harbor.key /home/ubuntu/harbor/certs
 
-sudo mkdir -p /var/snap/docker/certs.d/harbor:8443/
-sudo cp ${HARBOR_CERT_DIR}/harbor.cert /var/snap/docker/certs.d/harbor:8443/
-sudo cp ${HARBOR_CERT_DIR}/harbor.key /var/snap/docker/certs.d/harbor:8443/
-sudo cp ${CA_CERT_DIR}/ca.crt /var/snap/docker/certs.d/harbor:8443/
-sudo snap set system store-certs.cert1="$(cat ${CA_CERT_DIR}/ca.crt)"
-sudo snap restart docker
-
+echo "Provide the Certificates to Docker"
 for SNAP_DOCKER_CERT_SUB_DIR in ${SNAP_DOCKER_CERT_SUB_DIRS[@]}; do
   sudo mkdir -p ${SNAP_DOCKER_CERT_DIR}/${SNAP_DOCKER_CERT_SUB_DIR}
   sudo cp ${HARBOR_CERT_DIR}/harbor.cert ${SNAP_DOCKER_CERT_DIR}/${SNAP_DOCKER_CERT_SUB_DIR}/client.cert
@@ -33,6 +27,7 @@ for SNAP_DOCKER_CERT_SUB_DIR in ${SNAP_DOCKER_CERT_SUB_DIRS[@]}; do
   sudo cp ${CA_CERT_DIR}/ca.crt ${SNAP_DOCKER_CERT_DIR}/${SNAP_DOCKER_CERT_SUB_DIR}/ca.crt
 done
 
+echo "Install CA on Host System"
 sudo cp ${CA_CERT_DIR}/ca.crt /usr/local/share/ca-certificates/harbor.udfdemo.org:8443.crt
 sudo cp ${CA_CERT_DIR}/ca.crt /usr/local/share/ca-certificates/udfdemo.org:8443.crt
 sudo cp ${CA_CERT_DIR}/ca.crt /usr/local/share/ca-certificates/harbor:8443.crt
