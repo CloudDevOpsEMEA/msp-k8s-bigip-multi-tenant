@@ -13,5 +13,5 @@ prepare:
 
 traefik: prepare ## Pull, tag and push Traefik Ingress Controller
 	docker pull traefik:${TRAEFIK_VERSION}
-	docker tag traefik:${TRAEFIK_VERSION} harbor.udfdemo.org/traefik:${TRAEFIK_VERSION}
-	docker push harbor.udfdemo.org/traefik:${TRAEFIK_VERSION}
+	docker tag traefik:${TRAEFIK_VERSION} harbor.udfdemo.org/traefik/traefik:${TRAEFIK_VERSION}
+	docker push harbor.udfdemo.org/traefik/traefik:${TRAEFIK_VERSION}
