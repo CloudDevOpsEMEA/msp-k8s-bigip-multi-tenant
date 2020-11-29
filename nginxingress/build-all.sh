@@ -47,6 +47,5 @@ KIC_VERSIONS=(
 )
 
 for KIC_VERSION in ${KIC_VERSIONS[@]}; do
-  make KIC_VERSION=${KIC_VERSION} nginx-kic 
-  make KIC_VERSION=${KIC_VERSION} nginx-plus-kic
+  make KIC_VERSION=${KIC_VERSION} nginx-kic nginx-plus-kic
 done
