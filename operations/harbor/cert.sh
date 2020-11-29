@@ -2,7 +2,7 @@
 
 CA_CERT_DIR=../../certificates/ca
 HARBOR_CERT_DIR=../../certificates/harbor
-SNAP_DOCKER_CERT_DIR=/var/snap/docker/certs.d
+SNAP_DOCKER_CERT_DIR=/etc/docker/certs.d
 SNAP_DOCKER_CERT_SANS=(
   localhost:8443
   harbor.udfdemo.org:8443
