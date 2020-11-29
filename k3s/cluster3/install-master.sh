@@ -37,3 +37,4 @@ scp /home/ubuntu/.kube/config node3:/home/ubuntu/.kube/config || true
 echo "Use this token for node installation"
 sudo cat /var/lib/rancher/k3s/server/node-token
 
+source ~/.bashrc
