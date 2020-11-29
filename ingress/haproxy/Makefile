@@ -13,5 +13,5 @@ prepare:
 
 haproxy: prepare ## Pull, tag and push HAProxy Ingress Controller
 	docker pull haproxytech/kubernetes-ingress:${HAPROXY_VERSION}
-	docker tag haproxytech:${HAPROXY_VERSION} harbor.udfdemo.org/haproxy/kubernetes-ingress:${HAPROXY_VERSION}
+	docker tag haproxytech/kubernetes-ingress:${HAPROXY_VERSION} harbor.udfdemo.org/haproxy/kubernetes-ingress:${HAPROXY_VERSION}
 	docker push harbor.udfdemo.org/haproxy/kubernetes-ingress:${HAPROXY_VERSION}
