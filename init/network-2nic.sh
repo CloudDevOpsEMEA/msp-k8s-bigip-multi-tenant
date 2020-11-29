@@ -11,3 +11,5 @@ network:
 END
 
 sudo netplan apply
+
+ifconfig -a | grep ens -A 1
