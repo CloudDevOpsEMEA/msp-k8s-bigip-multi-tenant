@@ -32,6 +32,7 @@ echo 'alias k=kubectl' >>~/.bashrc
 echo 'complete -F __start_kubectl k' >>~/.bashrc
 
 echo "Send kubeconfig to node"
+ssh node3 'mkdir -p /home/ubuntu/.kube/config'
 scp /home/ubuntu/.kube/config node3:/home/ubuntu/.kube/config || true
 
 echo "Use this token for node installation"
