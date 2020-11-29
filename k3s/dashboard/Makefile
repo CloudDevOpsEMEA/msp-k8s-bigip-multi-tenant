@@ -10,6 +10,7 @@ help: ## This help
 install-k8s: ## Install kubernetes dashboard
 	kubectl apply -f namespace.yml
 	kubectl apply -k .
+	kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep dashboard-user | awk '{print $1}')
 
 remove-k8s: ## Remove kubernetes dashboard
 	kubectl delete -k .
