@@ -14,7 +14,7 @@ docker-login:
 
 git:
 	cd ${BUILD_DIR} && git clone https://github.com/nginxinc/kubernetes-ingress
-  cd ${BUILD_DIR}/kubernetes-ingress && git checkout v1.9.1
+	cd ${BUILD_DIR}/kubernetes-ingress && git checkout v1.9.1
 
 nginx-kic: docker-login git ## Build and push Nginx KIC
 	cd ${BUILD_DIR}/kubernetes-ingress && make PREFIX=harbor.udfdemo.org/nginx/nginx-ingress
