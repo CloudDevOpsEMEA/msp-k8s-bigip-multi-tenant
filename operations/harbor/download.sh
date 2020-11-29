@@ -11,3 +11,5 @@ cd /home/ubuntu
 tar xvf harbor-online-installer-${HARBOR_VERSION}.tgz
 cd harbor
 cp ${HARBOR_YAML} .
+
+echo "Run: cd /home/ubuntu/harbor ; sudo ./install.sh --with-clair"

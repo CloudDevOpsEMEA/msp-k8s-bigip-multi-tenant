@@ -18,11 +18,11 @@ extendedKeyUsage = serverAuth
 subjectAltName = @alt_names
 
 [alt_names]
-IP.1=10.1.1.12
 DNS.1=harbor.udfdemo.org
 DNS.2=udfdemo.org
 DNS.3=udfdemo
 DNS.4=harbor
+IP.1=10.1.1.12
 IP.2=10.1.10.12
 IP.3=10.1.20.12
 IP.4=10.1.30.12
