@@ -12,7 +12,7 @@ sudo tee -a /etc/hosts << END
 10.1.1.10   node3
 10.1.1.11   jumphost
 10.1.1.12   operations
+10.1.1.12   harbor
 10.1.1.12   prometheus
 10.1.1.12   elk
-10.1.1.12   harbor
 END
