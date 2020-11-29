@@ -20,5 +20,5 @@ nginx-kic: prepare ## Build and push Nginx KIC
 	cd ${BUILD_DIR}/kubernetes-ingress && make PREFIX=harbor.udfdemo.org/nginx/nginx-ingress
 	
 nginx-plus-kic: prepare ## Build and push Nginx Plus KIC
-	cp certs/* cd ${BUILD_DIR}/kubernetes-ingress
+	cp certs/* ${BUILD_DIR}/kubernetes-ingress
 	cd ${BUILD_DIR}/kubernetes-ingress && make PREFIX=harbor.udfdemo.org/nginx/nginx-plus-ingress DOCKERFILE=DockerfileForPlus
