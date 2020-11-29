@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "Installing Prometheus"
-sudo apt-get install prometheus prometheus-node-exporter prometheus-pushgateway prometheus-alertmanager
+sudo apt-get -y install prometheus prometheus-node-exporter prometheus-pushgateway prometheus-alertmanager
 
 echo "Installing Grafana"
 wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
