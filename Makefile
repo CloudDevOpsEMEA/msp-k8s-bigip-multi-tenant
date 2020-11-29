@@ -1,5 +1,5 @@
 .PHONY: help
-.PHONE: git-pull-all
+.PHONE: git-clone-all git-pull-all
 
 GIT_REPO=https://github.com/CloudDevOpsEMEA/msp-k8s-bigip-multi-tenant.git
 
