@@ -12,7 +12,7 @@ LOGGING_NAMESPACE=logging
 FLUENT_BIT_CHART_DIR=${LOGGING_DIR}/charts/fluent-bit
 FLUENT_BIT_VALUES_1=${LOGGING_DIR}/fluentbit-udf-values-cluster1.yaml
 FLUENT_BIT_VALUES_2=${LOGGING_DIR}/fluentbit-udf-values-cluster2.yaml
-FLUENT_BIT_VALUES_2=${LOGGING_DIR}/fluentbit-udf-values-cluster3.yaml
+FLUENT_BIT_VALUES_3=${LOGGING_DIR}/fluentbit-udf-values-cluster3.yaml
 
 
 rancher-ui:  ## Install rancher UI
