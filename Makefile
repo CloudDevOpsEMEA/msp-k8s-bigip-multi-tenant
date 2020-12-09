@@ -29,3 +29,15 @@ git-pull-all: ## Pull all git repos
 	ssh node3   		'cd ${REPO_DIR}; git pull ; sudo updatedb'
 	ssh operations  'cd ${REPO_DIR}; git pull ; sudo updatedb'
 	ssh jumphost   	'cd ${REPO_DIR}; git pull ; sudo updatedb'
+
+reboot-k8s-1: ## Reboot k8s cluster1 hosts
+	ssh master1 sudo reboot || true
+	ssh node1 sudo reboot || true
+
+reboot-k8s-2: ## Reboot k8s cluster2 hosts
+	ssh master2 sudo reboot || true
+	ssh node2 sudo reboot || true
+
+reboot-k8s-3: ## Reboot k8s cluster3 hosts
+	ssh master3 sudo reboot || true
+	ssh node3 sudo reboot || true

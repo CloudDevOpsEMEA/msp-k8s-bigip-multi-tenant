@@ -14,5 +14,8 @@ sudo tee -a /etc/hosts << END
 10.1.1.12   operations
 10.1.1.12   harbor
 10.1.1.12   prometheus
-10.1.1.12   elk
+10.1.1.12   grafana
+10.1.1.12   elasticsearch
+10.1.1.12   kibana
+10.1.1.12   cerebro
 END
