@@ -4,7 +4,7 @@ metrics:
 backend:
   type: es
   es:
-    index: kubernetes_cluster1
+    index: kubernetes_cluster3
     host: 10.1.40.12
     tls: "off"
     tls_verify: "off"
