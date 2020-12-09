@@ -4,7 +4,8 @@ metrics:
 backend:
   type: es
   es:
-    index: kubernetes_cluster2
+    index: k8s_cluster2
+    logstash_prefix: k8s_cluster2
     host: 10.1.30.12
     tls: "off"
     tls_verify: "off"
