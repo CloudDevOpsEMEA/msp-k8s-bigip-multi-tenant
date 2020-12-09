@@ -4,7 +4,7 @@ metrics:
 backend:
   type: es
   es:
-    time_key: '@ts'
+    index: kubernetes_cluster1
     host: 10.1.40.12
     tls: "off"
     tls_verify: "off"
